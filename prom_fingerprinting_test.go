@@ -23,7 +23,12 @@ func TestNewPromHash(t *testing.T) {
 }
 
 func BenchmarkNewPromHash(b *testing.B) {
+	var r uint64
+
 	for n := 0; n < b.N; n++ {
-		NewPromHash(map[string]string{"testing": "tester" + string(b.N)})
+		r = NewPromHash(map[string]string{"testing": "tester" + string(b.N)})
 	}
+
+	// Declared in go_fingerprinting_test.go, used only to avoid compiler optimizations
+	result = r
 }

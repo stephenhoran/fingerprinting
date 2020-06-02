@@ -22,8 +22,13 @@ func TestNewGoHash(t *testing.T) {
 	}
 }
 
+var result uint64
+
 func BenchmarkNewGoHash(b *testing.B) {
+	var r uint64
 	for n := 0; n < b.N; n++ {
-		NewGoHash(map[string]string{"testing": "tester" + string(b.N)})
+		r = NewGoHash(map[string]string{"testing": "tester" + string(b.N)})
 	}
+
+	result = r
 }
